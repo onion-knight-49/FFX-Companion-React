@@ -16,7 +16,8 @@ const Circle = styled.circle`
   stroke-dasharray: ${props => props.circleLength};
   stroke-dashoffset: ${props =>
     props.circleLength - props.progress * props.circleLength};
-  transition: all 300ms;
+  opacity: ${props => (props.circleLength === -1 ? 0 : 1)};
+  transition: ${props => (props.created ? 'all 300ms' : 'none')};
   transform: rotate(270deg);
   transform-origin: 50% 50%;
 `
@@ -32,13 +33,14 @@ const ProgressWrapper = styled.div`
 `
 
 export default class Progress extends React.Component {
-  state = { circleLength: 0 }
+  state = { created: false, circleLength: -1 }
 
   ref = React.createRef()
 
   componentDidMount() {
     const circleLength = Math.ceil(this.ref.current.getTotalLength()) + 1
     this.setState({ circleLength })
+    setTimeout(() => this.setState({ created: true }), 10)
   }
 
   render() {
@@ -54,6 +56,7 @@ export default class Progress extends React.Component {
             color={color}
             progress={progress}
             width={width}
+            created={this.state.created}
             circleLength={this.state.circleLength}
           />
         </SVG>

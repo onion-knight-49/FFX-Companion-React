@@ -10,7 +10,6 @@ const SVG = styled.svg`
 
 const Path = styled.path`
   stroke-dasharray: 669;
-  stroke-dashoffset: 669;
   stroke: green;
   stroke-width: 20px;
   fill: ${props => (props.checked ? 'lightgreen' : 'transparent')};
