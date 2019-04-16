@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom'
 import styled, { css, createGlobalStyle } from 'styled-components'
 
 import Progress from './progress'
-import Checkmark from './checkmark-in'
-import CheckmarkIn from './checkmark-in'
-import CheckmarkOut from './checkmark-out'
+import Checkmark from './checkmark'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -334,7 +332,7 @@ class AreaConquest extends React.Component {
         <FiendNameWrapper>{this.props.name}</FiendNameWrapper>
         <CheckMarkWrapper>
           <Count />
-          <div>{complete ? <CheckmarkIn /> : <CheckmarkOut />}</div>
+          <Checkmark checked={complete} />
         </CheckMarkWrapper>
         <SpeciesWrapper>{complete ? 'Complete!' : 'Incomplete'}</SpeciesWrapper>
       </FiendWrapper>
