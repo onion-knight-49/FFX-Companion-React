@@ -4,6 +4,7 @@ import styled, { css, createGlobalStyle } from 'styled-components'
 
 import Progress from './progress'
 import Checkmark from './checkmark'
+import { load, save } from './storage'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -869,11 +870,17 @@ class Notes extends React.Component {
 class App extends React.Component {
   state = { counts: areas.map(area => area.fiends.map(() => 0)) }
 
+  componentDidMount() {
+    const counts = load()
+    if (counts) this.setState({ counts })
+  }
+
   increment = (i, j) => {
     const newCount = this.state.counts[i][j] + 1
     if (newCount <= 10) {
       this.state.counts[i][j] = newCount
       this.setState({ counts: this.state.counts })
+      save(this.state.counts)
     }
   }
 
@@ -882,6 +889,7 @@ class App extends React.Component {
     if (newCount >= 0) {
       this.state.counts[i][j] = newCount
       this.setState({ counts: this.state.counts })
+      save(this.state.counts)
     }
   }
 
