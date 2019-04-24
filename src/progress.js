@@ -38,7 +38,7 @@ export default class Progress extends React.Component {
   ref = React.createRef()
 
   componentDidMount() {
-    const circleLength = Math.ceil(this.ref.current.getTotalLength()) + 0
+    const circleLength = Math.ceil(this.ref.current.getTotalLength()) + 0.1
     this.setState({ circleLength })
     setTimeout(() => this.setState({ created: true }), 10)
   }
