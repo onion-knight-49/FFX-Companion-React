@@ -33,7 +33,7 @@ const ProgressWrapper = styled.div`
 `
 
 export default class Progress extends React.Component {
-  state = { created: false, circleLength: -1 }
+  state = { created: false, circleLength: -0.1 }
 
   ref = React.createRef()
 
