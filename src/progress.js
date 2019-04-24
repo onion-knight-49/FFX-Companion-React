@@ -33,12 +33,12 @@ const ProgressWrapper = styled.div`
 `
 
 export default class Progress extends React.Component {
-  state = { created: false, circleLength: -0.1 }
+  state = { created: false, circleLength: -1 }
 
   ref = React.createRef()
 
   componentDidMount() {
-    const circleLength = Math.ceil(this.ref.current.getTotalLength()) + 1
+    const circleLength = Math.ceil(this.ref.current.getTotalLength()) + 0
     this.setState({ circleLength })
     setTimeout(() => this.setState({ created: true }), 10)
   }
